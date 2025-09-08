@@ -1,3 +1,63 @@
+# 1. User Accounts
+/user/info
+
+Param:
+username: [String] or email: [String]
+password: [String]
+
+Return:
+```
+{
+    avatarUrl: [String],
+    username: [String],
+    email: [String],
+    password: [String],
+    displayName: [String],
+    bio: [String],
+    phone: [String],
+    isEmailVerified: [Int],
+    isPhoneVerified: [Int],
+    posts: [
+        postId: [Int],
+    ]
+}
+
+```
+
+# 2. Post List
+/post/list
+
+# 3. Post details
+/post/info
+
+# 4. Sign up
+/user/signup
+
+Param:
+username: [String]
+email: [String]
+password: [String]
+
+Return:
+```
+    status: [Int]  -- 0 failed 1 succeed
+```
+
+# 5. Publish post
+
+# Console interface
+## Approve post
+Description:
+Change post's status from 2(suspend) to 1(active)
+
+Param:
+postId: [Int],
+
+Return:
+```
+    status: [Int] -- 0 failed 1 succeed
+```
+
 # Database (mysql)
 
 ~~~
@@ -32,7 +92,37 @@ CREATE TABLE `users` (
     
 	`is_deleted` tinyint unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='users';
+) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='users';
+
+create table `posts` (
+    `id`           BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    `author_id`    BIGINT UNSIGNED NOT NULL,             -- users(id)
+    `title`       VARCHAR(200)    NOT NULL,
+    `content_md`   MEDIUMTEXT      NOT NULL,
+    `reply_num`    INT UNSIGNED    NOT NULL DEFAULT '0',
+    `like_num`    INT UNSIGNED    NOT NULL DEFAULT '0',
+    `seen_num`     INT UNSIGNED    NOT NULL DEFAULT '0',
+    `create_time` int unsigned NOT NULL,
+    `update_time` int unsigned NOT NULL,
+    `delete_time` int unsigned,
+    `status` tinyint NOT NULL DEFAULT 1,   -- 1=ACTIVE,2=SUSPENDED,3=DELETED,
+    `is_deleted` tinyint unsigned NOT NULL DEFAULT '0'
+
+) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='posts';
+
+create table `comments` (
+    `id` BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    `author_id` BIGINT UNSIGNED NOT NULL,       -- users(id)
+    `post_id` BIGINT UNSIGNED NOT NULL,       -- posts(id)
+    `content` text NOT NULL,
+    `like_num` INT UNSIGNED NOT NULL DEFAULT '0',    
+    `create_time` int unsigned NOT NULL,
+    `update_time` int unsigned NOT NULL,
+    `delete_time` int unsigned,
+    `status` tinyint NOT NULL DEFAULT 1,   -- 1=ACTIVE,2=SUSPENDED,3=DELETED,
+    `is_deleted` tinyint unsigned NOT NULL DEFAULT '0'
+    
+) ENGINE=InnoDB AUTO_INCREMENT=1 CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='comments'
 
 ~~~
 
