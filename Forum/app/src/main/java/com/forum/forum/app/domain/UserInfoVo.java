@@ -17,4 +17,5 @@ public class UserInfoVo {
     private String bio;
     private String displayName;
     private List<Post> Posts;
+    private String createTime;
 }

@@ -45,6 +45,11 @@ public class AccountController {
         userInfoVo.setBio(userInfo.getBio());
         userInfoVo.setDisplayName(userInfo.getDisplayName());
         userInfoVo.setPosts(posts);
+        int timestamp = userInfo.getCreateTime();
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = dateTime.format(formatter);
+        userInfoVo.setCreateTime(formattedTime);
 
         return userInfoVo;
     }

@@ -36,6 +36,7 @@ public class AccountService {
         userInfo.setIsEmailVerified(account.getIsEmailVerified());
         userInfo.setIsPhoneVerified(account.getIsPhoneVerified());
         userInfo.setPosts(account.getPosts());
+        userInfo.setCreateTime(account.getCreateTime());
 
         return userInfo;
     }

@@ -20,7 +20,8 @@ Return:
     isPhoneVerified: [Int],
     posts: [
         postId: [Int],
-    ]
+    ],
+    createTime: [String]
 }
 
 ```
