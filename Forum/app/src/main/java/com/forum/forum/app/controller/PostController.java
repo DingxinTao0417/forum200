@@ -1,4 +1,4 @@
 package com.forum.forum.app.controller;
 
-public class Postcontroller {
+public class PostController {
 }

@@ -1,4 +1,4 @@
-# 1. User Accounts
+# 1. User Accounts Details/ Sign in
 /user/info
 
 Param:
@@ -8,6 +8,7 @@ password: [String]
 Return:
 ```
 {
+    id: [Int],
     avatarUrl: [String],
     username: [String],
     email: [String],
@@ -24,13 +25,28 @@ Return:
 
 ```
 
-# 2. Post List
+# 2. Sign up
+/user/signup
+
+Param: 
+email: [String],
+password: [String],
+username: [String]
+
+Return:
+```
+{
+    status: [Int]  0-failed 1-suceed
+}
+```
+
+# 3. Post List
 /post/list
 
-# 3. Post details
+# 4. Post details
 /post/info
 
-# 4. Sign up
+# 5. Sign up
 /user/signup
 
 Param:
