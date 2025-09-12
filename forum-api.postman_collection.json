@@ -1,0 +1,37 @@
+{
+  "info": {
+    "name": "Forum API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User SignUp",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n \"avatar_url\": \"https://example.com/avatar.png\",\n  \"username\": \"tdx\",\n  \"email\": \"tdx@example.com\",\n  \"password\": \"123456\",\n  \"display_name\": \"Dingxin Tao\",\n  \"bio\": \"Hello, I'm Tao\",\n  \"phone\": \"1234567890\",\n  \"is_email_verified\": 0,\n  \"is_phone_verified\": 0,\n  \"role\": 1,\n  \"status\": 1,\n  \"last_login_time\": 1694523000,\n  \"create_time\": 1694523000,\n  \"update_time\": 1694523000,\n  \"delete_time\": null,\n  \"is_deleted\": 0,\n  \"posts\": []\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/user/signUp",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user",
+            "signUp"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
