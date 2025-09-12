@@ -41,4 +41,10 @@ public class AccountService {
         return userInfo;
     }
 
+    public boolean signUp(Account account) {
+        if (account == null) {
+            return false;
+        }
+        return accountMapper.signUp(account);
+    }
 }

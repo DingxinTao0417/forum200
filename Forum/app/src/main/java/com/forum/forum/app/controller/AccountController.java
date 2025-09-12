@@ -1,5 +1,6 @@
 package com.forum.forum.app.controller;
 
+import com.forum.forum.app.domain.AppStatusVo;
 import com.forum.forum.app.domain.PostListVo;
 import com.forum.forum.app.domain.UserInfoVo;
 import com.forum.forum.module.entity.Account;
@@ -7,6 +8,7 @@ import com.forum.forum.module.entity.Post;
 import com.forum.forum.module.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +54,20 @@ public class AccountController {
         userInfoVo.setCreateTime(formattedTime);
 
         return userInfoVo;
+    }
+
+    @RequestMapping("/user/signUp")
+    public AppStatusVo signUp(@RequestBody Account account) {
+
+        boolean result = accountService.signUp(account);
+        AppStatusVo appStatusVo = new AppStatusVo();
+        if (result) {
+            appStatusVo.setStatusCode(0);
+            appStatusVo.setMessage("Sign up successful");
+        } else {
+            appStatusVo.setStatusCode(1);
+            appStatusVo.setMessage("Sign up failed");
+        }
+        return appStatusVo;
     }
 }
