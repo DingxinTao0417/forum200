@@ -2,5 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.book.module.mapper.BookMapper">
 
-
+    <insert id="signUp" parameterType="com.forum.forum.module.entity.Account">
+        insert into user (
+        <if test="users.username != null and users.username != ''">username,</if>
+        <if test="users.password != null and users.password != ''">password,</if>
+        <if test="users.email != null and users.email != ''">email,</if>
+        <if test="users.phone != null and users.phone != ''">phone,</if>
+        <if test="users.avatar_url != null and users.avatar_url != ''">avatar_url,</if>
+        <if test="users.bio != null and users.bio != ''">bio,</if>
+        <if test="users.display_name != null and users.display_name != ''">display_name,</if>
+        <if test="users.create_time != null and users.create_time != ''">create_time,</if>
+        <if test="users.is_email_verified != null and users.is_email_verified != ''">is_email_verified,</if>
+        <if test="users.is_phone_verified != null and users.is_phone_verified != ''">is_phone_verified,</if>
+        <if test="users.role != null and users.role != ''">role,</if>
+        <if test="users.last_login_time != null and users.last_login_time != ''">last_login_time,</if>
+        <if test="users.update_time != null and users.update_time != ''">update_time,</if>
+        <if test="users.delete_time != null and users.delete_time != ''">delete_time,</if>
+        is_deleted
+        ) values (
+        <if test="users.username != null and users.username != ''">#{account.username},</if>
+        <if test="users.password != null and users.password != ''">#{account.password},</if>
+        <if test="users.email != null and users.email != ''">#{account.email},</if>
+        <if test="users.phone != null and users.phone != ''">#{account.phone},</if>
+        <if test="users.avatar_url != null and users.avatar_url != ''">#{account.avatar_url},</if>
+        <if test="users.bio != null and users.bio != ''">#{account.bio},</if>
+        <if test="users.display_name != null and users.display_name != ''">#{account.display_name},</if>
+        <if test="users.create_time != null and users.create_time != ''">#{account.create_time},</if>
+        <if test="users.is_email_verified != null and users.is_email_verified != ''">#{account.is_email_verified},</if>
+        <if test="users.is_phone_verified != null and users.is_phone_verified != ''">#{account.is_phone_verified},</if>
+        <if test="users.role != null and users.role != ''">#{account.role},</if>
+        <if test="users.last_login_time != null and users.last_login_time != ''">#{account.last_login_time},</if>
+        <if test="users.update_time != null and users.update_time != ''">#{account.update_time},</if>
+        <if test="users.delete_time != null and users.delete_time != ''">#{account.delete_time},</if>
+        #{account.isDeleted}
+        )
+    </insert>
 </mapper>
