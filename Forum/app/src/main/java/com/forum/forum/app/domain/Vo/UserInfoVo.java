@@ -1,4 +1,4 @@
-package com.forum.forum.app.domain;
+package com.forum.forum.app.domain.Vo;
 
 import com.forum.forum.module.entity.Post;
 import lombok.Data;

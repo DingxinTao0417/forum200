@@ -1,10 +1,7 @@
-package com.forum.forum.app.domain;
+package com.forum.forum.app.domain.Vo;
 
-import com.forum.forum.module.entity.Post;
 import lombok.Data;
 import lombok.experimental.Accessors;
-
-import java.util.List;
 
 @Data
 @Accessors(chain = true)
