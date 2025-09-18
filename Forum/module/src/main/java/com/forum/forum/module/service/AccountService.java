@@ -1,6 +1,7 @@
 package com.forum.forum.module.service;
 
 import com.forum.forum.module.entity.Account;
+import com.forum.forum.module.entity.Post;
 import com.forum.forum.module.mapper.AccountMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,5 +47,9 @@ public class AccountService {
             return false;
         }
         return accountMapper.signUp(account);
+    }
+
+    public List<Post> getUserPosts(BigInteger userId) {
+        return accountMapper.getUserPosts(userId);
     }
 }

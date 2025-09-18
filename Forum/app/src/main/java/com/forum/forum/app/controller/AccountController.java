@@ -1,7 +1,7 @@
 package com.forum.forum.app.controller;
 
-import com.forum.forum.app.domain.AppStatusVo;
-import com.forum.forum.app.domain.UserInfoVo;
+import com.forum.forum.app.domain.Vo.AppStatusVo;
+import com.forum.forum.app.domain.Vo.UserInfoVo;
 import com.forum.forum.module.entity.Account;
 import com.forum.forum.module.entity.Post;
 import com.forum.forum.module.service.AccountService;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -67,5 +68,10 @@ public class AccountController {
             appStatusVo.setMessage("Sign up failed");
         }
         return appStatusVo;
+    }
+
+    @RequestMapping("/user/posts")
+    public List<Post> userPosts(@RequestParam(name = "author_id") BigInteger authorId) {
+        return accountService.getUserPosts(authorId);
     }
 }
