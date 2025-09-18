@@ -1,7 +1,11 @@
 package com.forum.forum.module.mapper;
 
 import com.forum.forum.module.entity.Post;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface PostMapper {
-    Post getPostById(Long id);
+
+    boolean createPost(Post post);
+
 }

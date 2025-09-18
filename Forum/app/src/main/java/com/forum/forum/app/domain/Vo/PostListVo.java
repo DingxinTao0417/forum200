@@ -1,4 +1,4 @@
-package com.forum.forum.app.domain;
+package com.forum.forum.app.domain.Vo;
 
 public class PostListVo {
 }
