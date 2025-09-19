@@ -4,11 +4,13 @@ import com.forum.forum.module.entity.Post;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Data
 @Accessors(chain = true)
 public class UserInfoVo {
+    private BigInteger id;
     private String username;
     private String password;
     private String email;

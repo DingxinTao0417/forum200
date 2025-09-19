@@ -38,6 +38,7 @@ public class AccountController {
         UserInfoVo userInfoVo = new UserInfoVo();
         List<Post> posts = new ArrayList<>();
 
+        userInfoVo.setId(userInfo.getId());
         userInfoVo.setUsername(userInfo.getUsername());
         userInfoVo.setPassword(userInfo.getPassword());
         userInfoVo.setEmail(userInfo.getEmail());
@@ -57,8 +58,6 @@ public class AccountController {
 
     @RequestMapping("/user/signUp")
     public AppStatusVo signUp(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password) {
-
-
 
         boolean result = accountService.signUp(username, email, password);
         AppStatusVo appStatusVo = new AppStatusVo();

@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forum.forum.module.mapper.CommentMapper">
 
+    <insert id="addComment" parameterType="com.forum.forum.module.entity.Comment">
+        insert into comments (
+        <if test="authorId != null">author_id,</if>
+        <if test="postId != null">post_id,</if>
+        <if test="content != null and content != ''">content,</if>
+        <if test="createTime != null and createTime != ''">create_time,</if>
+        <if test="updateTime != null and updateTime != ''">update_time</if>
+        ) values (
+        <if test="authorId != null">#{authorId},</if>
+        <if test="postId != null">#{postId},</if>
+        <if test="content != null and content != ''">#{content},</if>
+        <if test="createTime != null and createTime != ''">#{createTime},</if>
+        <if test="updateTime != null and updateTime != ''">#{updateTime}</if>
+        )
+    </insert>
 </mapper>

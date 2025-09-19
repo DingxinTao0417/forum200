@@ -27,6 +27,7 @@ public class AccountService {
         }
 
         Account userInfo = new Account();
+        userInfo.setId(account.getId());
         userInfo.setAvatarUrl(account.getAvatarUrl());
         userInfo.setUsername(account.getUsername());
         userInfo.setEmail(account.getEmail());

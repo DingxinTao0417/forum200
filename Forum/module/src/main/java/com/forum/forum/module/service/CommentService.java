@@ -18,4 +18,16 @@ public class CommentService {
     public List<Comment> getCommentsByPostId(BigInteger postId) {
         return commentMapper.getCommentsByPostId(postId);
     }
+
+    public boolean addComment(BigInteger authorId, BigInteger postId, String content) {
+        int timestamp = (int) (System.currentTimeMillis() / 1000);
+        Comment comment = new Comment();
+        comment.setAuthorId(authorId);
+        comment.setPostId(postId);
+        comment.setContent(content);
+        comment.setCreateTime(timestamp);
+        comment.setUpdateTime(timestamp);
+
+        return commentMapper.addComment(comment);
+    }
 }

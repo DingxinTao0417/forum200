@@ -1,14 +1,14 @@
 package com.forum.forum.app.controller;
 
+import com.forum.forum.app.domain.Vo.AppStatusVo;
 import com.forum.forum.app.domain.Vo.CommentListVo;
 import com.forum.forum.app.domain.Vo.CommentVo;
+import com.forum.forum.module.dto.CommentDto;
 import com.forum.forum.module.entity.Comment;
 import com.forum.forum.module.service.CommentService;
 import com.forum.forum.module.service.PostService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.math.BigInteger;
@@ -56,5 +56,19 @@ public class CommentController {
         commentListVo.setList(commentVoList);
 
         return commentListVo;
+    }
+
+    @PostMapping("/comment/add")
+    public AppStatusVo addComment(@RequestBody CommentDto dto) {
+        boolean result = commentService.addComment(dto.getAuthorId(), dto.getPostId(), dto.getContent());
+        AppStatusVo status = new AppStatusVo();
+        if (result) {
+            status.setStatusCode(0);
+            status.setMessage("Comment added successfully");
+        } else {
+            status.setStatusCode(1);
+            status.setMessage("Failed to add comment");
+        }
+        return status;
     }
 }
