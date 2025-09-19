@@ -1,4 +1,4 @@
-package com.forum.forum;
+package com.forum.forum.console;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
