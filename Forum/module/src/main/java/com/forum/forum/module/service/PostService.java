@@ -5,6 +5,7 @@ import com.forum.forum.module.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.util.List;
 
 @Service
@@ -18,5 +19,9 @@ public class PostService {
 
     public List<Post> getAllPosts() {
         return postMapper.getAll();
+    }
+
+    public Post getPostById(BigInteger id) {
+        return postMapper.getPostById(id);
     }
 }

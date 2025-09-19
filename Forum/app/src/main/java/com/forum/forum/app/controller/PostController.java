@@ -10,9 +10,11 @@ import com.forum.forum.module.service.PostService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -92,5 +94,35 @@ public class PostController {
         postListVo.setList(postInfoVoList);
 
         return postListVo;
+    }
+
+    @RequestMapping("/post/details")
+    public PostDetailsVo postDetails(@RequestParam(name = "id") BigInteger postId) {
+        Post post = postService.getPostById(postId);
+        if (post == null) {
+            return new PostDetailsVo();
+        }
+
+        PostDetailsVo postDetailsVo = new PostDetailsVo();
+        postDetailsVo.setTitle(post.getTitle());
+        postDetailsVo.setAuthorId(post.getAuthorId());
+        postDetailsVo.setContentMd(post.getContentMd());
+        int timestamp = post.getCreateTime();
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedTime = dateTime.format(formatter);
+        postDetailsVo.setCreateTime(formattedTime);
+
+        timestamp = post.getCreateTime();
+        dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());
+        formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        formattedTime = dateTime.format(formatter);
+        postDetailsVo.setUpdateTime(formattedTime);
+
+        postDetailsVo.setLikeNum(post.getLikeNum());
+        postDetailsVo.setSeenNum(post.getSeenNum());
+        postDetailsVo.setReplyNum(post.getReplyNum());
+
+        return postDetailsVo;
     }
 }
