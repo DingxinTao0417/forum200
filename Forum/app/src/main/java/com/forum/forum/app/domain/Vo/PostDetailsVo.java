@@ -14,6 +14,4 @@ public class PostDetailsVo {
     private int likeNum;
     private int seenNum;
     private int replyNum;
-
-
 }

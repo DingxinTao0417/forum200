@@ -2,6 +2,8 @@ package com.forum.forum.app.controller;
 
 import com.forum.forum.app.domain.Dto.PostDto;
 import com.forum.forum.app.domain.Vo.AppStatusVo;
+import com.forum.forum.app.domain.Vo.PostInfoVo;
+import com.forum.forum.app.domain.Vo.PostListVo;
 import com.forum.forum.module.entity.Post;
 import com.forum.forum.module.service.PostService;
 import lombok.extern.slf4j.Slf4j;
@@ -14,6 +16,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -55,5 +60,35 @@ public class PostController {
             appStatusVo.setMessage("Sign up failed");
         }
         return appStatusVo;
+    }
+
+    @RequestMapping("/post/all")
+    public PostListVo postList() {
+        List<Post> posts = this.postService.getAllPosts();
+        if (posts == null || posts.isEmpty()) {
+            return new PostListVo();
+        }
+
+        List<PostInfoVo> postInfoVoList = new ArrayList();
+        Iterator var3 = posts.iterator();
+
+        while(var3.hasNext()) {
+            Post post = (Post) var3.next();
+            PostInfoVo postInfoVo = new PostInfoVo();
+            postInfoVo.setTitle(post.getTitle());
+            postInfoVo.setAuthorId(post.getAuthorId());
+            postInfoVo.setLikeNum(post.getLikeNum());
+            int timestamp = post.getCreateTime();
+            LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String formattedTime = dateTime.format(formatter);
+            postInfoVo.setCreateTime(formattedTime);
+            postInfoVoList.add(postInfoVo);
+        }
+
+        PostListVo postListVo = new PostListVo();
+        postListVo.setList(postInfoVoList);
+
+        return postListVo;
     }
 }
