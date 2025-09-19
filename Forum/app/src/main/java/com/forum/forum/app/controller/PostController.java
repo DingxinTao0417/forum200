@@ -2,6 +2,7 @@ package com.forum.forum.app.controller;
 
 import com.forum.forum.app.domain.Dto.PostDto;
 import com.forum.forum.app.domain.Vo.AppStatusVo;
+import com.forum.forum.app.domain.Vo.PostDetailsVo;
 import com.forum.forum.app.domain.Vo.PostInfoVo;
 import com.forum.forum.app.domain.Vo.PostListVo;
 import com.forum.forum.module.entity.Post;
@@ -77,6 +78,7 @@ public class PostController {
             PostInfoVo postInfoVo = new PostInfoVo();
             postInfoVo.setTitle(post.getTitle());
             postInfoVo.setAuthorId(post.getAuthorId());
+            postInfoVo.setPostId(post.getId());
             postInfoVo.setLikeNum(post.getLikeNum());
             int timestamp = post.getCreateTime();
             LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());

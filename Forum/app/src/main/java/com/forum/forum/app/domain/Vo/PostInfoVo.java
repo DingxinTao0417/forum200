@@ -8,6 +8,7 @@ import java.math.BigInteger;
 public class PostInfoVo {
     private String title;
     private BigInteger authorId;
+    private BigInteger postId;
     private String createTime;
     private int likeNum;
 }
