@@ -56,9 +56,11 @@ public class AccountController {
     }
 
     @RequestMapping("/user/signUp")
-    public AppStatusVo signUp(@RequestBody Account account) {
+    public AppStatusVo signUp(@RequestParam(name = "username") String username, @RequestParam(name = "email") String email, @RequestParam(name = "password") String password) {
 
-        boolean result = accountService.signUp(account);
+
+
+        boolean result = accountService.signUp(username, email, password);
         AppStatusVo appStatusVo = new AppStatusVo();
         if (result) {
             appStatusVo.setStatusCode(0);

@@ -42,10 +42,17 @@ public class AccountService {
         return userInfo;
     }
 
-    public boolean signUp(Account account) {
-        if (account == null) {
-            return false;
-        }
+    public boolean signUp(String username, String email, String password) {
+
+        int timestamp = (int) (System.currentTimeMillis() / 1000);
+        Account account = new Account();
+        account.setUsername(username);
+        account.setEmail(email);
+        account.setPassword(password);
+        account.setCreateTime(timestamp);
+        account.setUpdateTime(timestamp);
+        account.setLastLoginTime(timestamp);
+
         return accountMapper.signUp(account);
     }
 
