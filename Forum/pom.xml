@@ -22,9 +22,6 @@
         <module>app</module>
         <module>console</module>
         <module>module</module>
-        <module>app</module>
-        <module>console</module>
-        <module>module</module>
     </modules>
 
     <properties>
